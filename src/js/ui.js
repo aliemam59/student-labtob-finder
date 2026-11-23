@@ -125,7 +125,6 @@ export function renderSkeletonCards(container, count = 6) {
     .join("");
 }
 
-// Shows a message in one of the hidden error boxes (toggles only the "hidden" class).
 export const showError = (box, message) => {
   if (!box) return;
   box.textContent = message;
@@ -157,9 +156,9 @@ export const renderStatCard = (label, value) => `
   </div>
 `;
 
-/* ---------- Laptop card ---------- */
 
-// Reusable card used on the catalogue and favorites pages (and anywhere else).
+
+
 // options.removeMode: the favorite button says "Remove" instead of Save/Saved.
 export function renderLaptopCard(laptop, options = {}) {
   const isSaved = getFavorites().includes(laptop.id);
