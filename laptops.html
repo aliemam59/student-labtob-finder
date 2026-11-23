@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="battery">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Laptop Finder — Catalogue</title>
+  <script>
+    // Restore the saved theme before the page paints, so there is no flash of the wrong theme.
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem("laptopFinderTheme"));
+        if (saved === "battery" || saved === "performance") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      } catch (error) { /* keep the default theme */ }
+    })();
+  </script>
+  <link rel="stylesheet" href="dist/output.css">
+</head>
+<body class="min-h-screen flex flex-col bg-bg text-text antialiased">
+  <header id="site-header" class="sticky top-0 z-30 border-b border-border bg-surface">
+    <noscript><a href="index.html" class="block p-4 font-semibold">Student Laptop Finder</a></noscript>
+  </header>
+
+  <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h1 class="text-2xl font-bold sm:text-3xl">Laptop Catalogue</h1>
+        <p id="result-count" class="mt-1 text-sm text-muted">Loading laptops...</p>
+      </div>
+      <button id="reset-filters" type="button" class="btn-secondary self-start sm:self-auto">Reset Filters</button>
+    </div>
+
+    <section aria-label="Search and Filters" class="mt-6 rounded-xl border border-border bg-surface p-4 sm:p-5">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div>
+          <label for="search-input" class="block text-xs font-semibold uppercase text-muted">Search</label>
+          <input id="search-input" type="search" placeholder="Name or brand..." class="form-control mt-1">
+        </div>
+
+        <div>
+          <label for="category-filter" class="block text-xs font-semibold uppercase text-muted">Category</label>
+          <select id="category-filter" class="form-control mt-1">
+            <option value="all">All Categories</option>
+            <option value="ultrabook">Ultrabook</option>
+            <option value="gaming">Gaming</option>
+            <option value="2-in-1">2-in-1</option>
+            <option value="creator">Creator</option>
+            <option value="budget">Budget</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="max-price" class="block text-xs font-semibold uppercase text-muted">Max Price ($)</label>
+          <input id="max-price" type="number" min="0" step="50" placeholder="e.g. 1200" class="form-control mt-1">
+        </div>
+
+        <div>
+          <label for="min-ram" class="block text-xs font-semibold uppercase text-muted">Min RAM (GB)</label>
+          <select id="min-ram" class="form-control mt-1">
+            <option value="0">Any RAM</option>
+            <option value="8">8 GB+</option>
+            <option value="16">16 GB+</option>
+            <option value="32">32 GB+</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="sort-select" class="block text-xs font-semibold uppercase text-muted">Sort By</label>
+          <select id="sort-select" class="form-control mt-1">
+            <option value="default">Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="battery-desc">Battery: High to Low</option>
+            <option value="battery-asc">Battery: Low to High</option>
+            <option value="weight-asc">Weight: Lightest First</option>
+            <option value="weight-desc">Weight: Heaviest First</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <div id="catalogue-error" class="mt-6 hidden rounded-xl border border-danger-border bg-danger-bg p-4 text-sm text-danger"></div>
+    <section id="laptop-grid" class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></section>
+  </main>
+
+  <footer id="site-footer" class="border-t border-border bg-surface"></footer>
+  <script type="module" src="src/js/laptops.js"></script>
+</body>
+</html>

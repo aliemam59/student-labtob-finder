@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="battery">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Laptop Finder — Compare</title>
+  <script>
+    // Restore the saved theme before the page paints, so there is no flash of the wrong theme.
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem("laptopFinderTheme"));
+        if (saved === "battery" || saved === "performance") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      } catch (error) { /* keep the default theme */ }
+    })();
+  </script>
+  <link rel="stylesheet" href="dist/output.css">
+</head>
+<body class="min-h-screen flex flex-col bg-bg text-text antialiased">
+  <header id="site-header" class="sticky top-0 z-30 border-b border-border bg-surface">
+    <noscript><a href="index.html" class="block p-4 font-semibold">Student Laptop Finder</a></noscript>
+  </header>
+
+  <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
+    <h1 class="text-2xl font-bold sm:text-3xl">Compare Favorites</h1>
+    <p class="mt-1 text-sm text-muted">Select between 2 and 4 saved laptops to compare side by side. Best values in each row are highlighted.</p>
+
+    <div id="compare-error" class="mt-6 hidden rounded-xl border border-danger-border bg-danger-bg p-4 text-sm text-danger"></div>
+    <div id="compare-notice" class="mt-4 hidden rounded-xl border border-accent bg-highlight p-3 text-sm font-medium text-text"></div>
+
+    <section id="compare-selector" class="mt-6 rounded-xl border border-border bg-surface p-4 sm:p-5"></section>
+
+    <section id="compare-table-wrapper" class="mt-6 overflow-x-auto rounded-xl border border-border bg-surface"></section>
+  </main>
+
+  <footer id="site-footer" class="border-t border-border bg-surface"></footer>
+  <script type="module" src="src/js/comparePage.js"></script>
+</body>
+</html>

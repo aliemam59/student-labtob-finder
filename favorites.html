@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="battery">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Laptop Finder — Favorites</title>
+  <script>
+    
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem("laptopFinderTheme"));
+        if (saved === "battery" || saved === "performance") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      } catch (error) { /* keep the default theme */ }
+    })();
+  </script>
+  <link rel="stylesheet" href="dist/output.css">
+</head>
+<body class="min-h-screen flex flex-col bg-bg text-text antialiased">
+  <header id="site-header" class="sticky top-0 z-30 border-b border-border bg-surface">
+    <noscript><a href="index.html" class="block p-4 font-semibold">Student Laptop Finder</a></noscript>
+  </header>
+
+  <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h1 class="text-2xl font-bold sm:text-3xl">Saved Favorites</h1>
+        <p class="mt-1 text-sm text-muted">Your shortlist is saved in your browser.</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="compare.html" class="btn-action">Compare Favorites</a>
+        <button id="clear-favorites" type="button" class="btn-secondary">Clear All</button>
+      </div>
+    </div>
+
+    <section id="favorites-summary" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3"></section>
+    <div id="favorites-error" class="mt-6 hidden rounded-xl border border-danger-border bg-danger-bg p-4 text-sm text-danger"></div>
+    <section id="favorites-grid" class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></section>
+  </main>
+
+  <footer id="site-footer" class="border-t border-border bg-surface"></footer>
+  <script type="module" src="src/js/favorites.js"></script>
+</body>
+</html>

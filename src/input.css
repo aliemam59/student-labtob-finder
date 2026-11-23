@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+
+@theme inline {
+  --color-bg: var(--theme-bg);
+  --color-surface: var(--theme-surface);
+  --color-text: var(--theme-text);
+  --color-muted: var(--theme-muted);
+  --color-border: var(--theme-border);
+  --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
+  --color-accent-text: var(--theme-accent-text);
+  --color-highlight: var(--theme-highlight);
+  --color-danger: var(--theme-danger);
+  --color-danger-bg: var(--theme-danger-bg);
+  --color-danger-border: var(--theme-danger-border);
+}
+
+/* Battery Saver  */
+:root,
+[data-theme="battery"] {
+  color-scheme: light;
+  --theme-bg: #626884;
+  --theme-surface: #ffffff;
+  --theme-text: #14261c;
+  --theme-muted: #0c140f;
+  --theme-border: #cfe2d5;
+  --theme-accent: #010904;
+  --theme-accent-hover: #030905;
+  --theme-accent-text: #ffffff;
+  --theme-highlight: #dcfce7;
+  --theme-danger: #991b1b;
+  --theme-danger-bg: #fef2f2;
+  --theme-danger-border: #f87171;
+}
+
+/* Performance Mode */
+[data-theme="performance"] {
+  color-scheme: dark;
+  --theme-bg: #0f172a;
+  --theme-surface: #1e293b;
+  --theme-text: #f8fafc;
+  --theme-muted: #94a3b8;
+  --theme-border: #334155;
+  --theme-accent: #ea580c;
+  --theme-accent-hover: #c2410c;
+  --theme-accent-text: #ffffff;
+  --theme-highlight: #431407;
+  --theme-danger: #fecaca;
+  --theme-danger-bg: #450a0a;
+  --theme-danger-border: #b91c1c;
+}
+
+@layer base {
+  
+  body {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .laptop-card {
+    @apply flex flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .btn-action {
+    @apply inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-text transition duration-200 hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-border bg-surface px-4 py-2 text-sm font-semibold text-text transition duration-200 hover:border-accent hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg cursor-pointer;
+  }
+
+  .form-control {
+    @apply w-full rounded-lg border-border bg-surface text-sm text-text shadow-xs focus:border-accent focus:ring-accent;
+  }
+}

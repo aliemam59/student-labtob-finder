@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="battery">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Laptop Finder — Home</title>
+  <script>
+
+ (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem("laptopFinderTheme"));
+        if (saved === "battery" || saved === "performance") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      } catch (error) { /* keep the default theme */ }
+    })();
+  </script>
+  <link rel="stylesheet" href="dist/output.css">
+</head>
+<body class="min-h-screen flex flex-col bg-bg text-text antialiased">
+  <header id="site-header" class="sticky top-0 z-30 border-b border-border bg-surface">
+    <noscript><a href="index.html" class="block p-4 font-semibold">Student Laptop Finder</a></noscript>
+  </header>
+
+  <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 lg:px-8">
+    <section class="rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-sm">
+      <p class="text-sm font-semibold uppercase tracking-wide text-accent">Student Laptop Finder</p>
+      <h1 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Find the right laptop for your degree</h1>
+      <p class="mt-4 max-w-2xl text-base text-muted">
+        Browse student-ready laptops, filter by budget and specs, save your shortlist, and compare top picks side by side.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="laptops.html" class="btn-action">Browse Catalogue</a>
+        <a href="favorites.html" class="btn-secondary">View Favorites</a>
+        <a href="compare.html" class="btn-secondary">Compare Laptops</a>
+      </div>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-bold">Live Catalogue Overview</h2>
+      <div id="home-error" class="mt-4 hidden rounded-xl border border-danger-border bg-danger-bg p-4 text-sm text-danger"></div>
+            <div id="stats-grid" class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="h-28 rounded-xl border border-border bg-surface p-5 animate-pulse">
+          <div class="h-4 w-24 rounded bg-border"></div>
+          <div class="mt-4 h-8 w-16 rounded bg-border"></div>
+        </div>
+        <div class="h-28 rounded-xl border border-border bg-surface p-5 animate-pulse">
+          <div class="h-4 w-24 rounded bg-border"></div>
+          <div class="mt-4 h-8 w-20 rounded bg-border"></div>
+        </div>
+        <div class="h-28 rounded-xl border border-border bg-surface p-5 animate-pulse">
+          <div class="h-4 w-24 rounded bg-border"></div>
+          <div class="mt-4 h-8 w-16 rounded bg-border"></div>
+        </div>
+        <div class="h-28 rounded-xl border border-border bg-surface p-5 animate-pulse">
+          <div class="h-4 w-24 rounded bg-border"></div>
+          <div class="mt-4 h-8 w-20 rounded bg-border"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <a href="laptops.html" class="laptop-card p-5">
+        <h3 class="font-bold text-lg">Catalogue</h3>
+        <p class="mt-1 text-sm text-muted">Search, filter by category, price, and RAM, and sort results.</p>
+      </a>
+      <a href="details.html?id=1" class="laptop-card p-5">
+        <h3 class="font-bold text-lg">Full Specs</h3>
+        <p class="mt-1 text-sm text-muted">Inspect complete hardware details for any laptop.</p>
+      </a>
+      <a href="favorites.html" class="laptop-card p-5">
+        <h3 class="font-bold text-lg">Favorites</h3>
+        <p class="mt-1 text-sm text-muted">Review saved picks with total and average pricing.</p>
+      </a>
+      <a href="compare.html" class="laptop-card p-5">
+        <h3 class="font-bold text-lg">Compare</h3>
+        <p class="mt-1 text-sm text-muted">Compare 2 to 4 favorites with best values highlighted.</p>
+      </a>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="border-t border-border bg-surface"></footer>
+  <script type="module" src="src/js/home.js"></script>
+</body>
+</html>
